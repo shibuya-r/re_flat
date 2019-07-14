@@ -1,0 +1,42 @@
+.img-content-right{
+  color: #fff;
+}
+.p1{
+  font-size: 20px;
+}
+.link_txt{
+  color: white;
+}
+#section1{
+  margin-left:auto;  /* IE以外用の中央寄せ */
+  margin-right:auto; /* IE以外用の中央寄せ */
+  width:800px;         /* 幅を決定する */
+}
+/* form */
+.submit-div{
+  float: left;
+  border: medium solid #808080;
+  width:800;
+  height:500;
+}
+.form-group{
+  width:700;
+}
+.btn-success{
+  width:700;
+  height:40;
+}
+.form-title{
+  background-color:#65c6ba;
+  height:60;
+  text-align: center;
+}
+.form-title-str{
+  color: white;
+  font-weight:bold;
+}
+#mycalendar{
+    border: medium solid #808080;
+      width:800;
+  height:700;
+}

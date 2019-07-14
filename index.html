@@ -1,0 +1,71 @@
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<!-- Bootstrap Javascript(jQuery含む) -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="./css/monthly.css">
+	<script type="text/javascript" src="./js/jquery.js"></script>
+	<script type="text/javascript" src="./js/monthly.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+	<script type="text/javascript" src="./js/firebase-config.js"></script>
+	<link rel="stylesheet" href="./css/main.css">
+	<!-- calendario -->
+	<title>TAKU's HP</title>
+</head>
+
+<body>
+	<section class="section" id="section1">
+		<div class="monthly" id="mycalendar"></div>
+		<div>
+			<h1 id="page_title"><span class="label label-warning">レッスン予定</h1>
+			<iflame class="submit-form">
+				<h4>■レッスンお申込みフォーム</h4>
+				<form class="col-xs-8">
+					<div class="form-group">
+						<label>日時</label>
+						<input type="date" class="form-control" placeholder="YYYY/MM/DD HH/MM~HH/MM">
+					</div>
+					<div class="form-group">
+						<label>申し込みコース</label><br>
+						<select id="select_course" name="course"></select>
+					</div>
+					<div class="form-group">
+						<label>人数</label>
+						<input type="number" class="form-control" placeholder="~人">
+					</div>
+					<div class="form-group">
+						<label>連絡先</label>
+						<input type="email" class="form-control" placeholder="Email">
+					</div>
+					<!-- 送信ボタン -->
+					<button type="submit" class="btn btn-success">送信</button>
+				</form>
+			</iflame>
+		</div>
+	</section>
+	<script>
+		$(window).load(function () {
+			$('#mycalendar').monthly();
+		});
+		firebase.initializeApp(window.fbConfig.config);
+		db = firebase.firestore();
+		db.collection('PRACTICE_COURSE').get().then(snap => {
+			snap.forEach(doc => {
+				let selectOption = document.createElement("option");
+				selectOption.setAttribute("value", doc.data().practice_id);
+				selectOption.innerHTML = doc.data().practice_name;
+
+				$("#select_course").append(selectOption);
+			});
+		});
+	</script>
+</body>
+
+</html>
