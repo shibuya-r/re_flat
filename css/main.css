@@ -10,20 +10,22 @@
 #section1{
   margin-left:auto;  /* IE以外用の中央寄せ */
   margin-right:auto; /* IE以外用の中央寄せ */
-  width:800px;         /* 幅を決定する */
+  width:1000px;         /* 幅を決定する */
 }
 /* form */
 .submit-div{
   float: left;
   border: medium solid #808080;
-  width:800;
+  width:1000;
   height:500;
+    margin-left:auto;  /* IE以外用の中央寄せ */
+  margin-right:auto; /* IE以外用の中央寄せ */
 }
 .form-group{
-  width:700;
+  width:1000;
 }
 .btn-success{
-  width:700;
+  width:1000;
   height:40;
 }
 .form-title{
@@ -36,7 +38,7 @@
   font-weight:bold;
 }
 #mycalendar{
-    border: medium solid #808080;
-      width:800;
-  height:700;
+  border: medium solid #808080;
+  margin-left:auto;  /* IE以外用の中央寄せ */
+  margin-right:auto; /* IE以外用の中央寄せ */
 }

@@ -12,19 +12,20 @@
 	<link rel="stylesheet" href="./css/monthly.css">
 	<script type="text/javascript" src="./js/jquery.js"></script>
 	<script type="text/javascript" src="./js/monthly.js"></script>
+	<script type="text/javascript" src="./js/main.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
 	<script type="text/javascript" src="./js/firebase-config.js"></script>
 	<link rel="stylesheet" href="./css/main.css">
 	<!-- calendario -->
-	<title>TAKU's HP</title>
+	<title>Re-FLAT</title>
 </head>
 
 <body>
 	<section class="section" id="section1">
+		<img src="./img/top.jpg" style="width:1000;"></div>
 		<div class="monthly" id="mycalendar"></div>
 		<div>
-			<h1 id="page_title"><span class="label label-warning">レッスン予定</h1>
 			<iflame class="submit-form">
 				<h4>■レッスンお申込みフォーム</h4>
 				<form class="col-xs-8">
@@ -50,22 +51,6 @@
 			</iflame>
 		</div>
 	</section>
-	<script>
-		$(window).load(function () {
-			$('#mycalendar').monthly();
-		});
-		firebase.initializeApp(window.fbConfig.config);
-		db = firebase.firestore();
-		db.collection('PRACTICE_COURSE').get().then(snap => {
-			snap.forEach(doc => {
-				let selectOption = document.createElement("option");
-				selectOption.setAttribute("value", doc.data().practice_id);
-				selectOption.innerHTML = doc.data().practice_name;
-
-				$("#select_course").append(selectOption);
-			});
-		});
-	</script>
 </body>
 
 </html>
