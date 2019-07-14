@@ -454,14 +454,15 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 		// Click A Day
 		$(document.body).on("click touchstart", parent + " .monthly-day", function (event) {
-			// If events, show events list
 			var date = $(this).attr('id').split('dt');
 			var date = date[1].slice(0);
 			var date = new Date(date.substr(0, 4) + '/' + date.substr(4, 2) + '/' + date.substr(6, 2));
 			date.setDate(date.getDate() + 1); //set selected date
 			var clicked_date = date.getFullYear() + '-' + ("00" + (date.getMonth()+1)).slice(-2) +'-' + ("00" + date.getDate()).slice(-2);
-			console.log(clicked_date)
 			$('#select_date').val(clicked_date);
+			$('.monthly-day').css('background-color','rgb(255, 255, 255)');
+			$(this).css('background-color','rgba(255, 165, 0, 0.5)');
+
 		});
 
 		// Clicking an event within the list
