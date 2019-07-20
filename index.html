@@ -28,26 +28,30 @@
 		<div>
 			<iflame class="submit-form">
 				<h4>■レッスンお申込みフォーム</h4>
-				<form class="col-xs-8">
+				<!-- <form class="col-xs-8" id='request_lesson'> -->
 					<div class="form-group">
 						<label>日時</label>
 						<input type="date" class="form-control" placeholder="YYYY/MM/DD HH/MM~HH/MM" id="select_date">
 					</div>
 					<div class="form-group">
 						<label>申し込みコース</label><br>
-						<select id="select_course" name="course"></select>
+						<select id="select_course" name="course"><option value="">==SELECT COURSE==</option></select>
 					</div>
 					<div class="form-group">
 						<label>人数</label>
-						<input type="number" class="form-control" placeholder="~人">
+						<input type="number" class="form-control" placeholder="~人" id='num_of_people'>
+					</div>
+					<div class="form-group">
+						<label>代表者氏名</label>
+						<input type="text" class="form-control" placeholder="Name of representative" id='name_of_person'>
 					</div>
 					<div class="form-group">
 						<label>連絡先</label>
-						<input type="email" class="form-control" placeholder="Email">
+						<input type="email" class="form-control" placeholder="Email" id='email'>
 					</div>
 					<!-- 送信ボタン -->
-					<button type="submit" class="btn btn-success">送信</button>
-				</form>
+					<button type="button" class="btn btn-success" id='send-btn'>送信</button>
+				<!-- </form> -->
 			</iflame>
 		</div>
 	</section>
