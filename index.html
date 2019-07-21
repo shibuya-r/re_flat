@@ -17,6 +17,8 @@
 	<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
 	<script type="text/javascript" src="./js/firebase-config.js"></script>
 	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" type="text/css" href="./css/datatables.css">
+	<script type="text/javascript" src="./js/datatables.js"></script>
 	<!-- calendario -->
 	<title>Re-FLAT</title>
 </head>
@@ -25,32 +27,99 @@
 	<section class="section" id="section1">
 		<img src="./img/top.jpg" style="width:1000;"></div>
 		<div class="monthly" id="mycalendar"></div>
-		<div>
+		<div class="reservation_list" id="reservation_list">
+			<table id="reservation_table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>時間</th>
+						<th>コース</th>
+						<th>残り予約可能人数</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><input type="radio" name="reservation"></td>
+						<td>10:00-12:00</td>
+						<td>初心者向け</td>
+						<td>10</td>
+					</tr>
+					<tr>
+						<td><input type="radio" name="reservation"></td>
+						<td>11:00-12:00</td>
+						<td>初心者向け</td>
+						<td>8</td>
+					</tr>
+					<tr>
+						<td><input type="radio" name="reservation"></td>
+						<td>13:00-14:00</td>
+						<td>中級者向け</td>
+						<td>10</td>
+					</tr>
+					<tr>
+						<td><input type="radio" name="reservation"></td>
+						<td>14:00-15:00</td>
+						<td>上級者向け</td>
+						<td>2</td>
+					</tr>
+					<tr>
+						<td><input type="radio" name="reservation"></td>
+						<td>15:00-16:00</td>
+						<td>中級者向け</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td><input type="radio" name="reservation"></td>
+						<td>16:00-17:00</td>
+						<td>初心者向け</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td><input type="radio" name="reservation"></td>
+						<td>17:00-18:00</td>
+						<td>中級者向け</td>
+						<td>6</td>
+					</tr>
+					<tr>
+						<td><input type="radio" name="reservation"></td>
+						<td>18:00-19:00</td>
+						<td>上級者向け</td>
+						<td>4</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div id="s_form">
 			<iflame class="submit-form">
-				<h4>■レッスンお申込みフォーム</h4>
+				<h4>■お申込みフォーム</h4>
 				<!-- <form class="col-xs-8" id='request_lesson'> -->
-					<div class="form-group">
-						<label>日時</label>
-						<input type="date" class="form-control" placeholder="YYYY/MM/DD HH/MM~HH/MM" id="select_date">
-					</div>
-					<div class="form-group">
-						<label>申し込みコース</label><br>
-						<select id="select_course" name="course"><option value="">==SELECT COURSE==</option></select>
-					</div>
-					<div class="form-group">
-						<label>人数</label>
-						<input type="number" class="form-control" placeholder="~人" id='num_of_people'>
-					</div>
-					<div class="form-group">
-						<label>代表者氏名</label>
-						<input type="text" class="form-control" placeholder="Name of representative" id='name_of_person'>
-					</div>
-					<div class="form-group">
-						<label>連絡先</label>
-						<input type="email" class="form-control" placeholder="Email" id='email'>
-					</div>
-					<!-- 送信ボタン -->
-					<button type="button" class="btn btn-success" id='send-btn'>送信</button>
+				<div class="form-group">
+					<label>日時</label>
+					<input type="date" class="form-control" id="select_date" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label>申し込みコース</label><br>
+					<input type="text" class="form-control" id="select_course" placeholder="希望のコースを選択してください"
+						readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label>人数</label>
+					<input type="number" class="form-control" placeholder="半角数字で入力してください" id='num_of_people'>
+				</div>
+				<div class="form-group">
+					<label>代表者氏名</label>
+					<input type="text" class="form-control" placeholder="代表者指名を入力してください" id='name_of_person'>
+				</div>
+				<div class="form-group">
+					<label>電話番号</label>
+					<input type="number" class="form-control" placeholder="半角数字で入力してください" id='tel'>
+				</div>
+				<div class="form-group">
+					<label>メールアドレス</label>
+					<input type="email" class="form-control" placeholder="メールアドレスを入力してください" id='email'>
+				</div>
+				<!-- 送信ボタン -->
+				<button type="button" class="btn btn-success form-control" id='send-btn'>送信</button>
 				<!-- </form> -->
 			</iflame>
 		</div>
