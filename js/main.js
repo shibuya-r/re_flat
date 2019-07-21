@@ -28,7 +28,7 @@ $(function () {
         var availabilityRef = db.collection('AVAILABILITY').doc(selected_date);
         availabilityRef.get().then(function(doc) {
         if (doc.exists) {
-            update_num = doc.data().remaining_num-1
+            let update_num = doc.data().remaining_num-1
             if (update_num >= 0) {
                 availabilityRef.update({
                     remaining_num: update_num
