@@ -120,6 +120,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 							+ " dt" + thisDate.toISOString().slice(0, 10)
 							)
 						+ attr("data-number", dayNumber)
+						+ attr("id", "dt" + thisDate.toISOString().slice(0, 10).replace(/-/g, ""))
 						+ ">" + innerMarkup + "</div>");
 					$(parent + " .monthly-event-list").append("<div"
 						+ attr("class", "monthly-list-item")
@@ -453,39 +454,15 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 
 		// Click A Day
 		$(document.body).on("click touchstart", parent + " .monthly-day", function (event) {
-			// If events, show events list
-			var whichDay = $(this).data("number");
-			if(options.mode === "event" && options.eventList) {
-				var	theList = $(parent + " .monthly-event-list"),
-					myElement = document.getElementById(uniqueId + "day" + whichDay),
-					topPos = myElement.offsetTop;
-				theList.show();
-				theList.css("transform");
-				theList.css("transform", "scale(1)");
-				$(parent + ' .monthly-list-item[data-number="' + whichDay + '"]').show();
-				theList.scrollTop(topPos);
-				viewToggleButton();
-				if(!options.linkCalendarToEventUrl) {
-					event.preventDefault();
-				}
-			// If picker, pick date
-			} else if (options.mode === "picker") {
-				var	setMonth = $(parent).data("setMonth"),
-					setYear = $(parent).data("setYear");
-				// Should days in the past be disabled?
-				if($(this).hasClass("monthly-past-day") && options.disablePast) {
-					// If so, don't do anything.
-					event.preventDefault();
-				} else {
-					// Otherwise, select the date ...
-					$(String(options.target)).val(formatDate(setYear, setMonth, whichDay));
-					// ... and then hide the calendar if it started that way
-					if(options.startHidden) {
-						$(parent).hide();
-					}
-				}
-				event.preventDefault();
-			}
+			var date = $(this).attr('id').split('dt');
+			var date = date[1].slice(0);
+			var date = new Date(date.substr(0, 4) + '/' + date.substr(4, 2) + '/' + date.substr(6, 2));
+			date.setDate(date.getDate() + 1); //set selected date
+			var clicked_date = date.getFullYear() + '-' + ("00" + (date.getMonth()+1)).slice(-2) +'-' + ("00" + date.getDate()).slice(-2);
+			$('#select_date').val(clicked_date);
+			$('.monthly-day').css('background-color','rgb(255, 255, 255)');
+			$(this).css('background-color','rgba(255, 165, 0, 0.5)');
+
 		});
 
 		// Clicking an event within the list
