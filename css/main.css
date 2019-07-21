@@ -16,16 +16,16 @@
 .submit-div{
   float: left;
   border: medium solid #808080;
-  width:1000;
+  width:950;
   height:500;
-    margin-left:auto;  /* IE以外用の中央寄せ */
+  margin-left:auto;  /* IE以外用の中央寄せ */
   margin-right:auto; /* IE以外用の中央寄せ */
 }
 .form-group{
-  width:1000;
+  width:950;
 }
 .btn-success{
-  width:1000;
+  width:950;
   height:40;
 }
 .form-title{
@@ -37,8 +37,24 @@
   color: white;
   font-weight:bold;
 }
+.form-control{
+  margin-left:10;
+}
 #mycalendar{
   border: medium solid #808080;
   margin-left:auto;  /* IE以外用の中央寄せ */
   margin-right:auto; /* IE以外用の中央寄せ */
+}
+#reservation_list{
+  border: medium solid #808080;
+  margin-left:auto;  /* IE以外用の中央寄せ */
+  margin-right:auto; /* IE以外用の中央寄せ */
+  margin-top:20; /* IE以外用の中央寄せ */
+}
+#s_form{
+  border: medium solid #808080;
+  margin-left:auto;  /* IE以外用の中央寄せ */
+  margin-right:auto; /* IE以外用の中央寄せ */
+  margin-top:20; /* IE以外用の中央寄せ */
+  padding-bottom:20; /* IE以外用の中央寄せ */
 }
