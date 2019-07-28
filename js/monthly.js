@@ -114,6 +114,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 					innerMarkup = '<div class="monthly-day-number">' + dayNumber + '</div><div class="monthly-indicator-wrap"></div>';
 				if(options.mode === "event") {
 					var thisDate = new Date(year, mZeroed, dayNumber, 0, 0, 0, 0);
+					var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 0, 0, 0, 0);
 					$(parent + " .monthly-day-wrap").append("<div"
 						+ attr("class", "m-d monthly-day monthly-day-event"
 							+ (isInPast ? " monthly-past-day" : "")
@@ -127,6 +128,20 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						+ attr("id", uniqueId + "day" + dayNumber)
 						+ attr("data-number", dayNumber)
 						+ '><div class="monthly-event-list-date">' + dayNames[thisDate.getDay()] + "<br>" + dayNumber + "</div></div>");
+
+					// Set selectable term that is Until one month later from today
+					const _today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 0, 0, 0, 0);
+					const next_month = new Date(_today.setMonth(_today.getMonth() + 1));
+					if(thisDate.getTime() < today.getTime()){
+						let selector_id = '#dt'+thisDate.getFullYear()+("00" + (thisDate.getMonth()+1)).slice(-2)+ ("00" + (thisDate.getDate()-1)).slice(-2);
+						$(selector_id).css('background','repeating-linear-gradient(45deg, #e79901 0, #e79901 10px, #e2e7eb 10px, #e2e7eb 20px)');
+					}else if(next_month.getTime() < thisDate.getTime()){
+						console.log(thisDate)
+
+					}
+
+
+
 				} else {
 					$(parent + " .monthly-day-wrap").append("<a"
 						+ attr("href", "#")
@@ -135,6 +150,24 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						+ ">" + innerMarkup + "</a>");
 				}
 			}
+
+			// Set selectable date of beginings of the month that are before today
+			var begi_of_month = $('div[data-number="1"]').attr('id');
+			var begi_of_month = begi_of_month.replace('dt', '')
+			var target_date = new Date(Number(begi_of_month.substr(0, 4)), (Number(begi_of_month.substr(4, 2))-1), Number(begi_of_month.substr(6, 2)));
+			var target_date = new Date(target_date.setDate(target_date.getDate() + 1));
+			let _target_date = new Date(Number(begi_of_month.substr(0, 4)), (Number(begi_of_month.substr(4, 2))-1), Number(begi_of_month.substr(6, 2)));
+			if (today.getTime() > target_date.getTime()){
+				if(today.getTime() != _target_date.getTime()){
+					$('#dt'+begi_of_month).css('background','repeating-linear-gradient(45deg, #e79901 0, #e79901 10px, #e2e7eb 10px, #e2e7eb 20px)');
+				}else{
+	 				// NOTHING TO DO
+				}
+			} else {
+	 				// NOTHING TO DO
+			}
+
+
 
 			if (settingCurrentMonth) {
 				$(parent + ' *[data-number="' + currentDay + '"]').addClass("monthly-today");
@@ -462,7 +495,6 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			$('#select_date').val(clicked_date);
 			$('.monthly-day').css('background-color','rgb(255, 255, 255)');
 			$(this).css('background-color','rgba(255, 165, 0, 0.5)');
-
 		});
 
 		// Clicking an event within the list
