@@ -61,7 +61,7 @@ $(function () {
                     })
                         .then(function (docRef) {
                             console.log("Document written with ID: ", docRef.id);
-                            $.post(EMAIL_FUNCTIONS_URL+'?sbj='+name_of_person+'&msg='+email_contents)
+                            $.post(EMAIL_FUNCTIONS_URL+'?adding_sbj='+name_of_person+'&msg_cnt='+email_contents)
                             alert('申し込みが完了しました。')
                             location.reload();
                         })

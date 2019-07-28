@@ -17,18 +17,18 @@ let transporter = nodemailer.createTransport({
 });
 
 // Request sending message by Gmail
-exports.sendMail = functions.https.onRequest((req, res) => {
+exports.sendMailer = functions.https.onRequest((req, res) => {
     cors(req, res, () => {
 
         // Add  URL query param
-        const adding_sbj = req.query.sbj;
-        const msg = req.query.msg;
+        const adding_sbj = req.query.adding_sbj;
+        const msg_cnt = req.query.msg_cnt;
 
         const mailOptions = {
             from: gmailEmail,
             to: gmailRecipient,
             subject: adding_sbj+'様からレッスンの予約を受け付けました',
-            html: `${msg}`
+            html: `${msg_cnt}`
         };
 
         // Get respnse from Gmail
