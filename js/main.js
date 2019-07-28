@@ -19,7 +19,7 @@ $(function () {
     })
 });
 
-// Innsert lessons to DB
+// Insert lessons to DB
 $(function () {
     db = firebase.firestore();
     $("#send-btn").on('click', function () {
@@ -27,7 +27,19 @@ $(function () {
         let selected_course = $("#select_course").val();
         let num_of_people = $("#num_of_people").val();
         let name_of_person = $("#name_of_person").val();
+        let tel_num = $("#tel").val();
         let email = $("#email").val();
+
+        let email_contents = '<p>予約内容↓</p>'
+                            +'<p>**************************************************************</p>'
+                            +'<table><tr><td>予約日:</td><td>'+selected_date+'</td></tr>'
+                            +'<tr><td>予約コース:</td><td>'+selected_course+'</td></tr>'
+                            +'<tr><td>予約人数:</td><td>'+num_of_people+'名</td></tr>'
+                            +'<tr><td>代表者:</td><td>'+name_of_person+'</td></tr>'
+                            +'<tr><td>代表者TEL:</td><td>'+tel_num+'</td></tr>'
+                            +'<tr><td>代表者メール:</td><td>'+email+'</td></tr></table>'
+                            +'<p>**************************************************************</p>'
+
 
         var availabilityRef = db.collection('AVAILABILITY').doc(selected_date);
         availabilityRef.get().then(function (doc) {
@@ -49,6 +61,7 @@ $(function () {
                     })
                         .then(function (docRef) {
                             console.log("Document written with ID: ", docRef.id);
+                            $.post(EMAIL_FUNCTIONS_URL+'?sbj='+name_of_person+'&msg='+email_contents)
                             alert('申し込みが完了しました。')
                             location.reload();
                         })
