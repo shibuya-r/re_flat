@@ -430,6 +430,16 @@ establish the rules based on the calendar element width rather than the device w
 	}
 }
 
+.selectable:hover{
+	cursor: pointer;
+	background-color: rgba(255, 165, 0, 0.4);
+}
+.unselectable{
+	background: repeating-linear-gradient(45deg, #e79901 0, #e79901 10px, #e2e7eb 10px, #e2e7eb 20px);
+	opacity: 0.3;
+	pointer-events: none;
+}
+
 /* Erace default settings of <input type='date'> */
 input[type=date]::-webkit-inner-spin-button {
   -webkit-appearance: none;

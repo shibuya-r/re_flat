@@ -129,18 +129,19 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 						+ attr("data-number", dayNumber)
 						+ '><div class="monthly-event-list-date">' + dayNames[thisDate.getDay()] + "<br>" + dayNumber + "</div></div>");
 
-					// Set selectable term that is Until one month later from today
+					// SET selectable term that is Until one month later from today except date of beginnings of the month
 					const _today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 0, 0, 0, 0);
 					const next_month = new Date(_today.setMonth(_today.getMonth() + 1));
 					if(thisDate.getTime() < today.getTime()){
 						let selector_id = '#dt'+thisDate.getFullYear()+("00" + (thisDate.getMonth()+1)).slice(-2)+ ("00" + (thisDate.getDate()-1)).slice(-2);
-						$(selector_id).css('background','repeating-linear-gradient(45deg, #e79901 0, #e79901 10px, #e2e7eb 10px, #e2e7eb 20px)');
+						$(selector_id).addClass('unselectable');
 					}else if(next_month.getTime() < thisDate.getTime()){
-						console.log(thisDate)
-
+						let selector_id = '#dt'+thisDate.getFullYear()+("00" + (thisDate.getMonth()+1)).slice(-2)+ ("00" + (thisDate.getDate()-1)).slice(-2);
+						$(selector_id).addClass('unselectable');
+					}else{
+						let selector_id = '#dt'+thisDate.getFullYear()+("00" + (thisDate.getMonth()+1)).slice(-2)+ ("00" + (thisDate.getDate()-1)).slice(-2);
+						$(selector_id).addClass('selectable');
 					}
-
-
 
 				} else {
 					$(parent + " .monthly-day-wrap").append("<a"
@@ -151,23 +152,25 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 				}
 			}
 
-			// Set selectable date of beginings of the month that are before today
+			// SET selectable date of beginnings of the month that are before today
 			var begi_of_month = $('div[data-number="1"]').attr('id');
 			var begi_of_month = begi_of_month.replace('dt', '')
 			var target_date = new Date(Number(begi_of_month.substr(0, 4)), (Number(begi_of_month.substr(4, 2))-1), Number(begi_of_month.substr(6, 2)));
 			var target_date = new Date(target_date.setDate(target_date.getDate() + 1));
 			let _target_date = new Date(Number(begi_of_month.substr(0, 4)), (Number(begi_of_month.substr(4, 2))-1), Number(begi_of_month.substr(6, 2)));
+			const _today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(), 0, 0, 0, 0);
+			const next_month = new Date(_today.setMonth(_today.getMonth() + 1));
 			if (today.getTime() > target_date.getTime()){
 				if(today.getTime() != _target_date.getTime()){
-					$('#dt'+begi_of_month).css('background','repeating-linear-gradient(45deg, #e79901 0, #e79901 10px, #e2e7eb 10px, #e2e7eb 20px)');
+					$('#dt'+begi_of_month).addClass('unselectable');
 				}else{
-	 				// NOTHING TO DO
+					$('#dt'+begi_of_month).addClass('selectable');
 				}
-			} else {
-	 				// NOTHING TO DO
+			} else if(target_date.getTime() > next_month.getTime()){
+					$('#dt'+begi_of_month).addClass('unselectable');
+			}else{
+					$('#dt'+begi_of_month).addClass('selectable');
 			}
-
-
 
 			if (settingCurrentMonth) {
 				$(parent + ' *[data-number="' + currentDay + '"]').addClass("monthly-today");
@@ -494,7 +497,7 @@ Monthly 2.2.2 by Kevin Thornbloom is licensed under a Creative Commons Attributi
 			var clicked_date = date.getFullYear() + '-' + ("00" + (date.getMonth()+1)).slice(-2) +'-' + ("00" + date.getDate()).slice(-2);
 			$('#select_date').val(clicked_date);
 			$('.monthly-day').css('background-color','rgb(255, 255, 255)');
-			$(this).css('background-color','rgba(255, 165, 0, 0.5)');
+			$(this).css('background-color','rgba(255, 165, 0, 0.9)');
 		});
 
 		// Clicking an event within the list
